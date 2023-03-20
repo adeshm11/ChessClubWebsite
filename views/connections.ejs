@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tournaments</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+
+</head>
+
+<body>
+	<% if(typeof userData !='undefined' ){ %>
+		<%- include('partials/header_sc.ejs') -%>
+			<%- include('partials/nav_sc.ejs') -%>
+				<%} else{ %>
+					<%- include('partials/header.ejs') -%>
+						<%- include('partials/nav.ejs') -%>
+							<%} %>
+								<main>
+									<div>
+										<% if(typeof err !='undefined' ){ %>
+											<p id="connections-message-style">Invalid tournament ID is passed.</p>
+											<%}%>
+									</div>
+									<section id="connections-style">
+										<article>
+											<% for(let[topic, topicConnections] of Object.entries(connections)) { %>
+												<% if (topicConnections.length> 0) { %>
+													<h3>
+														<%= topic %>
+													</h3>
+													<%} %>
+														<% topicConnections.forEach(connection=> { %>
+															<ul>
+																<% if(typeof userData !="undefined" ){ %>
+																	<li><a
+																			href='/user/connections/connection/<%=connection.connectionID %>'>
+																			<%= connection.connectionName %>
+																		</a></li>
+																	<%} else{ %>
+																		<li><a
+																				href='/connections/connection/<%=connection.connectionID %>'>
+																				<%= connection.connectionName %>
+																			</a></li>
+																		<%} %>
+															</ul>
+															<% });%>
+																<%} %>
+										</article>
+									</section>
+								</main>
+								<%- include('partials/footer.ejs') -%>
+</body>
+
+</html>

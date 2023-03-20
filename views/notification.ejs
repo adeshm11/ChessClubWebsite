@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Notification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+</head>
+
+<body>
+    <% if(typeof userData !='undefined' ){ %>
+        <%- include('partials/header_sc.ejs') -%>
+            <%- include('partials/nav_sc.ejs') -%>
+                <%} else{ %>
+                    <%- include('partials/header.ejs') -%>
+                        <%- include('partials/nav.ejs') -%>
+                            <%} %>
+
+                                <main>
+                                    <div id="notification-page-style">
+                                        <div>
+                                            <h2 id="invitation-style">Invitations</h2>
+                                        </div>
+                                        <article>
+                                            <% for(var i=0; i<connections.length; i++){ %>
+                                                <ul>
+                                                    <% if(typeof userData !="undefined" ){ %>
+                                                        <li id="background-color"><a
+                                                                href='/user/connections/connection/<%=connections[i].connectionID %>'>
+                                                                <%= connections[i].connectionName %>
+                                                            </a></li>
+                                                        <%} else{ %>
+                                                            <li><a
+                                                                    href='/connections/connection/<%=connections[i].connectionID %>'>
+                                                                    <%= connections[i].connectionName %>
+                                                                </a></li>
+                                                            <%} %>
+                                                </ul>
+                                                <%} %>
+                                        </article>
+                                    </div>
+                                </main>
+                                <%- include('partials/footer.ejs') -%>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+    </head>
+
+    <body>
+        <!-- Header and Navigation bar views when a user is logged in -->
+        <% if(typeof userData != 'undefined'){ %>
+			<%- include('partials/header_sc.ejs') -%>
+            <%- include('partials/nav_sc.ejs') -%>
+        <!-- Header and Navigation bar views when a user is not logged in -->
+		<%} else{ %>
+			<%- include('partials/header.ejs') -%>
+			<%- include('partials/nav.ejs') -%>
+		<%} %>
+        <main class='signup-main'>
+            <h2>Sign up</h2>
+          
+            <form id='signup-form' method="POST" action="/user/login">
+                <label for ="firstName" id="firstName-style">First Name</label>
+                <input type="text" name="firstName" id="firstName"/>
+                <label for ="lastName" id="lastName-style">Last Name</label>
+                <input type="text" name="lastName" id="lastName"/>
+                <label for ="email" id="email-style">Email ID</label>
+                <input type="text" name="email" id="email"/>
+                <div><p id="email-message-style"></p></div>
+                <label for ="sPassword" id = "sPassword-style">Password</label>
+                <div><p id="password-message-style"></p></div>
+                <input type="text" name="sPassword" id="sPassword"/>
+               <label for ="cPassword" id = "cPassword-style">Confirm Password</label>
+                <input type="text" name="cPassword" id="cPassword"/> 
+                <input type="submit" name="Sign Up" id="signup" class="button" value="Sign Up"/>
+            </form>
+
+            <div id="userExists-message-style">
+                <% if(typeof user != 'undefined'){ %>
+                    <p>The email ID you have entered is already registered. If you have already registered, please try again to login else register using a different email ID.</p>
+                <%}%>
+            </div>
+
+            <div id="signup-validation-message">
+                <% if(typeof err != 'undefined'){ %>
+                    <% for(var i=0; i<err.length; i++){ %>
+                        <p> <%= err[i] %> </p> 
+                    <%}%>
+                <%} %>
+            </div>
+        </main>
+        <%- include('partials/footer.ejs') -%> 
+    </body>
+</html>

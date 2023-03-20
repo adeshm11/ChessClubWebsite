@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+    </head>
+
+    <body>
+        <% if(typeof userData != 'undefined'){ %>
+			<%- include('partials/header_sc.ejs') -%>
+            <%- include('partials/nav_sc.ejs') -%>
+		<%} else{ %>
+			<%- include('partials/header.ejs') -%>
+			<%- include('partials/nav.ejs') -%>
+		<%} %>
+        <main class='login-main'>
+           
+            <form id='login-form' method="POST" action="/user/savedConnections">
+                <label for ="username" id="username-style">Username</label><input type="text" name="username" id="username"/>
+                <label for ="password" id = "password-style">Password</label><input type="text" name="password" id="password"/>
+                <input type="submit" name="Login" id="loginButton-style" class="button" value="Login"/>
+            </form>
+
+            <div>
+                <% if(typeof register != 'undefined'){ %>
+                    <p id='login-successU-style'>Username is not registered.</p>
+                <%}%>
+            </div>
+
+            <div>
+                <% if(typeof password != 'undefined'){ %>
+                    <p id='login-successP-style'>Password is incorrect. Please try again.</p>
+                <%}%>
+            </div>
+
+            <div id='login-validation-message'>
+                <% if(typeof errors != 'undefined'){ %>
+                    <% for(var i=0; i<errors.length; i++){ %>
+                        <p> <%= errors[i] %> </p> 
+                    <%}%>
+                <%} %>
+            </div>
+        </main>
+        <%- include('partials/footer.ejs') -%> 
+    </body>
+</html>

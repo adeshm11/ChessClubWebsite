@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+
+</head>
+
+<body>
+	<% if(typeof userData !='undefined' ){ %>
+		<%- include('partials/header_sc.ejs') -%>
+			<%- include('partials/nav_sc.ejs') -%>
+				<%} else{ %>
+					<%- include('partials/header.ejs') -%>
+						<%- include('partials/nav.ejs') -%>
+							<%} %>
+								<main>
+									<section id="home-page">
+										<h2 id="welcome-style">Welcome to Charlotte Chess Club</h2>
+										<br>
+										<p id="indextext1"> Chess is a recreational and competitive board game played
+											between two players. Chess
+											can assist in the enhancement of life skills and brain development.</p>
+										<p id="indextext2"> There are many benefits to playing chess which include:
+											improved reading and writing
+											skills, improved creativity, increased problem solving ability
+											and enhanced planning and foresight ability.</p>
+										<br>
+										<p id="indextext3">Check out the Tournaments section to browse upcoming Events!
+										</p>
+									</section>
+									<br>
+									<div>
+										<img class="image-top-margin" src="/assets/images/chess_home_page.png"
+											alt="home page image" />
+									</div>
+								</main>
+								<%- include('partials/footer.ejs') -%>
+</body>
+
+</html>

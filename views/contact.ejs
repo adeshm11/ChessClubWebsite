@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+</head>
+
+<body>
+    <% if(typeof userData !='undefined' ){ %>
+        <%- include('partials/header_sc.ejs') -%>
+            <%- include('partials/nav_sc.ejs') -%>
+                <%} else{ %>
+                    <%- include('partials/header.ejs') -%>
+                        <%- include('partials/nav.ejs') -%>
+                            <%} %>
+                                <main class="contact-style">
+                                    <h3>* Contact US *</h3>
+                                    <p> For any queries regarding tournaments, please send an e-mail to
+                                        adeshm11@uncc.edu </p>
+                                </main>
+                                <%- include('partials/footer.ejs') -%>
+</body>
+
+</html>

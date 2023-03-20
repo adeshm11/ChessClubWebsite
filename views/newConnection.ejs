@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>New Connection</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+    </head>
+
+    <body>
+        <% if(typeof userData != 'undefined'){ %>
+			<%- include('partials/header_sc.ejs') -%>
+			<%- include('partials/nav_sc.ejs') -%>
+		<%} else{ %>
+			<%- include('partials/header.ejs') -%>
+			<%- include('partials/nav.ejs') -%>
+		<%} %>
+        <main id="new-connection-main">
+            <form id='new-connection' method="POST" action="/user/newConnection">
+                <label for ="topic" id="topic-style">Category</label>
+                <input type="text" name="topic" id="topic" placeholder="Category"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.connectionTopic %>"
+                <%} %>/>
+                <label for ="name" id="name-style">Title</label>
+                <input type="text" name="name" id="name" placeholder="Title"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.connectionName %>"
+                <%} %>/>
+                <label for ="details" id="details-style">Details</label>
+                <input type="text"  name="details" id="details" placeholder="Description"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.details %>"
+                <%} %>/>
+                <label for ="where" id="where-style">Where</label>
+                <input type="text" name="where" id="where" placeholder="Location"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.location %>"
+                <%} %>/>
+                <label for ="when" id="when-style">When</label>
+                <input type="date" name="when" id="when"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.date %>"
+                <%} %>/>
+                <label for ="startTime" id="sTime-style">Starts</label>
+                <input type="time" name="startTime" id="startTime"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.startTime %>"
+                <%} %>/>
+                <label for ="endTime" id="eTime-style">Ends</label>
+                <input type="time" name="endTime" id="endTime"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.endTime %>"
+                <%} %>/>
+                <label for ="Select&emspImage" id="image-style">Image URL</label>
+                <input type="text" name="image" id="image" placeholder="URL"
+                <% if(typeof conn != 'undefined'){ %> 
+                    value= "<%= conn.image %>"
+                <%} %>/>
+                <input type="submit" name="Create-Connection" id="createButton-style" class="button" value="Add Tournament"/>
+            </form>
+
+            <div id='newConnection-success-message'>
+                <% if(typeof value != 'undefined'){ %>
+                    <p> Tournament added successfully!</p>
+                <%} %>
+            </div>
+            
+            <div id='newConnection-unsuccessfull-message'>
+                <% if(typeof error != 'undefined'){ %>
+                    <p> One or more fields are left blank. Tournament is not created.</p>
+                <%} %>
+            </div>
+
+            <div id='newConnection-validation-message'>
+                <% if(typeof errors!= 'undefined'){ %>
+                        <% for(var i=0; i<errors.length; i++){ %>
+                            <p> <%= errors[i] %> </p> 
+                        <%}%>
+                <%} %>
+            </div>
+        </main>
+        <%- include('partials/footer.ejs') -%> 
+    </body>
+</html>

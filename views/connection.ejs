@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Tournament</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+</head>
+
+<body>
+	<% if(typeof userData !='undefined' ){ %>
+		<%- include('partials/header_sc.ejs') -%>
+			<%- include('partials/nav_sc.ejs') -%>
+				<%} else{ %>
+					<%- include('partials/header.ejs') -%>
+						<%- include('partials/nav.ejs') -%>
+							<%} %>
+								<main>
+									<section id="connection-style">
+										<article id=connectionDetail1-style>
+											<h2>
+												<%= connection.connectionName %>
+											</h2>
+											<ul>
+												<li id="connectionImg-style">
+													<img src="/assets/images/chess.jpg" alt="eventlogo" height="110"
+														width="170">
+												</li>
+											</ul>
+											<ul id="connectionInfo-style">
+												<li>Hosted by <%= connection.host %>
+												</li>
+												<li>
+													<%= connection.date %>
+												</li>
+												<li>
+													<%= connection.startTime %> - <%= connection.endTime %>
+												</li>
+												<li>
+													<%= connection.location %>
+												</li>
+											</ul>
+										</article>
+										<article id="connectionDetail2-style">
+											<h2>Details</h2>
+											<p id="text-wrap">
+												<%= connection.details %>
+											</p>
+										</article>
+									</section>
+									<div>
+										<% if(typeof userData !='undefined' ){ %>
+											<% if(connection.host===userData.firstName ){ %>
+												<!-- <button id="edit-connection-button" onclick="window.location.href='/user/newConnection?topic=<%= connection.connectionTopic %>&name=<%= connection.connectionName %>&details=<%= connection.details %>&where=<%= connection.where %>&when=<%= connection.when %>&start=<%= connection.startTime %>&end=<%= connection.endTime %>'">Edit </button> -->
+												<form action='/user/editConnection/<%= connection.connectionID %>'
+													method="GET">
+													<input type="submit" name="edit" id="edit-connection-button"
+														value="Edit">
+												</form>
+
+								
+
+												<form action='/user/deleteConnection/<%= connection.connectionID %>'
+													method="GET">
+													<input type="submit" name="delete" id="delete-connection-button"
+														value="Delete">
+												</form>
+												<%} %>
+													<%} %>
+									</div>
+								</main>
+								<aside id="rsvp-style">
+									<p>Are you going? <%= numPeople %> people going</p>
+									<div id="button-align">
+										<% if(typeof userData !="undefined" ){ %>
+											<form action='/user/<%= connection.connectionID %>/savedConnections'
+												method="POST" class="inner">
+												<input type="submit" name="Button" id="buttonYes" value="Yes" />
+												<input hidden name="connectionID" value=<%=connection.connectionID %>/>
+											</form>
+											<form action='/user/<%= connection.connectionID %>/savedConnections'
+												method="POST" class="inner">
+												<input type="submit" name="Button" id="buttonNo" value="No" />
+											</form>
+											<form action='/user/<%= connection.connectionID %>/savedConnections'
+												method="POST" class="inner">
+												<input type="submit" name="Button" id="buttonMaybe" value="Maybe" />
+											</form>
+											<%} else{ %>
+												<form action='/user/login' method="POST" class="inner">
+													<input type="submit" name="Button" id="buttonYes" value="Yes" />
+												</form>
+												<form action='/user/login' method="POST" class="inner">
+													<input type="submit" name="Button" id="buttonNo" value="No" />
+												</form>
+												<form action='/user/login' method="POST" class="inner">
+													<input type="submit" name="Button" id="buttonMaybe" value="Maybe" />
+												</form>
+												<%} %>
+									</div>
+								</aside>
+								<%- include('partials/footer.ejs') -%>
+</body>
+
+</html>

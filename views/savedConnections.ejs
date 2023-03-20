@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>savedConnections</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+	<!--[if lt IE 9]>
+		<script>
+			document.createElement("article");
+			document.createElement("aside");
+			document.createElement("footer");
+			document.createElement("header");
+			document.createElement("section");
+			document.createElement("nav");
+			document.createElement("main");
+		</script>
+		<![end if]-->
+</head>
+
+<body>
+	<% if(typeof userData !='undefined' ){ %>
+		<%- include('partials/header_sc.ejs') -%>
+			<%- include('partials/nav_sc.ejs') -%>
+				<%} else{ %>
+					<%- include('partials/header.ejs') -%>
+						<%- include('partials/nav.ejs') -%>
+							<%} %>
+								<main>
+									<section>
+										<h3 id="savedConnh3-style">
+											<%= userData.firstName %>'s Tournaments
+										</h3>
+										<table>
+											<tr>
+												<th>Tournament</th>
+												<th>Category</th>
+												<th>Going?</th>
+												<th>Actions</th>
+											</tr>
+											<% for(var i=0; i<uc.length; i++){ %>
+												<tr>
+													<td>
+														<%= uc[i].connection.connectionName %>
+													</td>
+													<td>
+														<%= uc[i].connection.connectionTopic %>
+													</td>
+													<td>
+														<%= uc[i].rsvp %>
+													</td>
+													<td>
+														<form
+															action="/user/connections/connection/<%= uc[i].connection.connectionID %>"
+															method="POST" class="inner-change">
+															<input type="submit" name="update"
+																class="updateButton-style" value="Update" />
+														</form>
+														<form
+															action='/user/<%= uc[i].connection.connectionID %>/delete/savedConnections'
+															method="POST" class="inner-change">
+															<input type="submit" name="delete"
+																class="deleteButton-style" value="Delete" />
+														</form>
+													</td>
+												</tr>
+												<% } %>
+										</table>
+									</section>
+								</main>
+								<%- include('partials/footer.ejs') -%>
+</body>
+
+</html>

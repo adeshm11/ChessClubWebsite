@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/style.css">
+</head>
+
+<body>
+    <% if(typeof userData !='undefined' ){ %>
+        <%- include('partials/header_sc.ejs') -%>
+            <%- include('partials/nav_sc.ejs') -%>
+                <%} else{ %>
+                    <%- include('partials/header.ejs') -%>
+                        <%- include('partials/nav.ejs') -%>
+                            <%} %>
+                                <main class="about-style">
+                                    <h3>* About Us *</h3>
+                                    <p> We are chess club who go established in 2019 in UNC Charlotte. Our tornaments
+                                        happen all over the
+                                        year.
+                                        Our tournaments usually happen in Woodward building.</p>
+                                    <p> This club helps you to find upcoming chess tournaments in the UNC Charlotte.
+                                    </p>
+                                </main>
+                                <%- include('partials/footer.ejs') -%>
+</body>
+
+</html>
